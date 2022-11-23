@@ -87,12 +87,14 @@ func claim_points{syscall_ptr: felt*, pedersen_ptr: HashBuiltin*, range_check_pt
         let (user_slot) = user_slots_storage.read(sender_address);
         assert_not_zero(user_slot);
     }
+    // user_slot 함수 콜 한번 하고
     // Checking that the value provided by the user is the one we expect
     // Yes, I'm sneaky
     let (value) = values_mapped_storage.read(user_slot);
     with_attr error_message("Input value is not the expected secret value") {
         assert value = expected_value + 32;
     }
+    // TODO: 이때, storage 값이 28이면?
     // Checking if the user has validated the exercise before
     validate_exercise(sender_address);
     // Sending points to the address specified as parameter
