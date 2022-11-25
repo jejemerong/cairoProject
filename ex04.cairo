@@ -149,7 +149,10 @@ func set_a_random_value{syscall_ptr: felt*, pedersen_ptr: HashBuiltin*, range_ch
         return ();
     }
 
+    // for 문이 안되니까 다시 변수 넣는거구나ㅋㅋㅋㅋ
+    // values_len 은 1 줄이고 values 는 1 증가!
     set_a_random_value(values_len=values_len - 1, values=values + 1);
+    // 그럼 values_mapped_storage 에 들어가는거는 -2 하는건가? values 는 +2 증가?
     values_mapped_storage.write(values_len - 1, [values]);
 
     return ();
